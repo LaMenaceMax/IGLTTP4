@@ -3,22 +3,9 @@
 #include <vector>
 #include "fichierIm.h"
 #include "fonctions.h"
+#include "testCanal.h"
 
 
-TEST(UnitTest, CanalGetHeight)
-{
-	Canal c = Canal(5, 10);
-	int x = c.GetHeight();
-	EXPECT_EQ(10, x);
-}
-
-
-TEST(UnitTest, CanalGetWidth)
-{
-	Canal c = Canal(5, 10);
-	int x = c.GetWidth();
-	EXPECT_EQ(5, x);
-}
 
 
 
@@ -73,7 +60,8 @@ TEST(TestFonctionnalite, ModifierUneImage)
 
 int main(int argc,char* argv[])
 {
+	Canal test = Canal();
+	test(-1);
 	testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-

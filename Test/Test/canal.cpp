@@ -328,3 +328,30 @@ Canal Canal::operator/(PIXTYPE i_pixOp) const
 	return bandRes;
 }
 
+bool Canal::operator==(Canal i_pixOp) const
+{
+	int nSize(m_nWidth*m_nHeight);
+
+
+
+	for (int i = 0; i < nSize; i++)
+		if (m_pPix[i] != i_pixOp(i))
+			return false;
+		
+
+	return true;
+}
+bool Canal::operator==(PIXTYPE *i_pixOp) const
+{
+	int nSize(m_nWidth*m_nHeight);
+
+
+
+	for (int i = 0; i < nSize; i++)
+		if (m_pPix[i] != i_pixOp[i])
+			return false;
+
+
+			return true;
+}
+
