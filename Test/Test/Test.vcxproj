@@ -163,6 +163,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="nrfourn.h" />
+    <ClInclude Include="testCanal.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>

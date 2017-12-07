@@ -30,6 +30,14 @@ class Canal{
 			return m_nWidth; 
 		};
 
+		PIXTYPE* GetPixel() const {
+			return m_pPix;
+		};
+
+		void SetPixel(PIXTYPE* pixel)  {
+			 m_pPix= pixel;
+		};
+
 		// Accès à la hauteur
 		inline int GetHeight() const{ 
 			return m_nHeight; 
@@ -82,6 +90,10 @@ class Canal{
 		// Division par un scalaire
 		// retour : L'image résultante
 		Canal operator/(PIXTYPE i_pixOp) const;
+
+		bool operator==(Canal i_pixOp) const;
+
+		bool operator==(PIXTYPE * i_pixOp) const;
 		
 		// Addition point ˆ point
 		// retour : L'image rŽsultante
