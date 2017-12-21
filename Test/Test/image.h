@@ -116,6 +116,8 @@ class Image{
 		// Soustraction d'un scalaire
 		// retour : L'image résultante
 		Image operator-(PIXTYPE in_glOp) const;
+
+		bool operator==(Image i_pixOp) const;
 		
 		// Initialisation de tous les éléments à une valeur.
 		void InitWith(

@@ -68,5 +68,8 @@
     <ClInclude Include="testCanal.h">
       <Filter>Fichiers sources</Filter>
     </ClInclude>
+    <ClInclude Include="testImage.h">
+      <Filter>Fichiers sources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
