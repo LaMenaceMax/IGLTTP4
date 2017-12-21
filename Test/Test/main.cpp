@@ -4,7 +4,7 @@
 #include "fichierIm.h"
 #include "fonctions.h"
 #include "testCanal.h"
-
+#include "testImage.h"
 
 
 

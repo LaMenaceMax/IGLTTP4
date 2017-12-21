@@ -434,4 +434,21 @@ Image Image::operator-(PIXTYPE i_pixOp) const
 	return imgRes;
 }
 
+bool Image::operator==(Image i_pixOp) const
+{
+	
+	if (m_nNumBands != i_pixOp.GetNumBands())
+		return false;
+
+
+	for (int i = 0; i < m_nNumBands; i++)
+	{
+		if (!((*this)[i] == i_pixOp[i]))
+			return false;
+	}
+
+
+
+	return true;
+}
 
