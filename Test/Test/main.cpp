@@ -2,73 +2,24 @@
 #include <fstream>
 #include <vector>
 #include "fichierIm.h"
-#include "fonctions.h"
 #include "testCanal.h"
 #include "testImage.h"
-
-
-
-
-TEST(TestIntegration, Canal)
-{
-	Canal c = Canal(10, 5);
-	int cy = c.GetHeight();
-	EXPECT_EQ(5, cy);
-	int cz = c.GetWidth();
-	EXPECT_EQ(10, cz);
-}
-
-TEST(TestIntegration, Image)
-{
-	Image i = Image(10, 5, 2);
-	Canal c = i[0];
-	int cy = c.GetHeight();
-	EXPECT_EQ(5, cy);
-	int cz = c.GetWidth();
-	EXPECT_EQ(10, cz);
-	int x = i.GetNumBands();
-	EXPECT_EQ(2, x);
-	int y = i.GetHeight();
-	EXPECT_EQ(5, y);
-	int z = i.GetWidth();
-	EXPECT_EQ(10, z);
-}
-
-
-TEST(TestIntegration, fichierIm)
-{
-	Image i = Image(10, 5, 2);
-	fichierIm imFile = fichierIm(i, "bidon");
-	Canal c = imFile.image[0];
-	int cy = c.GetHeight();
-	EXPECT_EQ(5, cy);
-	int cz = c.GetWidth();
-	EXPECT_EQ(10, cz);
-	int x = imFile.image().GetNumBands();
-	EXPECT_EQ(2, x);
-	int y = imFile.image().GetHeight();
-	EXPECT_EQ(5, y);
-	int z = imFile.image().GetWidth();
-	EXPECT_EQ(10, z);
-	string nom = imFile.nom();
-	EXPECT_EQ(nom, "bidon");
-}
-
+#include "testIntegration.h"
 
 TEST(TestFonctionnalite, ModifierUneImage)
 {
 	Image img = Image(10, 5, 1);
-	for (int i = 0; i < 10 ; i++)
+	for (size_t i = 0; i < 10 ; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (size_t j = 0; j < 5; j++)
 		{
 			img[0](i, j) = i*j;
 		}
 	}
 	
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (size_t j = 0; j < 5; j++)
 		{
 			EXPECT_EQ(i*j, img[0](i, j));
 		}
@@ -76,6 +27,38 @@ TEST(TestFonctionnalite, ModifierUneImage)
 
 }
 
+TEST(TestFonctionnalite, read)
+{
+	Image img = Image(30, 30);
+	for (int i = 0; i < 30; ++i)
+	{
+		for (int j = 0; j < 30; ++j)
+			img[0](i, j) = 65;
+	}
+	fichierIm lecture("p5.pgm");
+	lecture.charge();
+
+	EXPECT_EQ(lecture.image(),img);
+}
+
+TEST(TestFonctionnalite, save)
+{
+	Image img = Image(30, 30);
+	for (int i = 0; i < 30; ++i)
+	{
+		for (int j = 0; j < 30; ++j)
+			img[0](i, j) = 65;
+	}
+	
+	fichierIm save(img, "test2.pgm");
+	save.sauvegarde();
+
+	fichierIm lecture("test2.pgm");
+	lecture.charge();
+
+	EXPECT_EQ(lecture.image(), save.image());
+	EXPECT_EQ(lecture.image(), img);
+}
 
 int main(int argc,char* argv[])
 {
