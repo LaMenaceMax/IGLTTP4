@@ -2,7 +2,6 @@
 #include <fstream>
 #include <vector>
 #include "fichierIm.h"
-#include "fonctions.h"
 
 
 TEST(UnitTestCanal, Constructor)
