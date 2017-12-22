@@ -9,9 +9,23 @@
 
 
 
+TEST(TestIntegration, Canal)
+{
+	Canal c = Canal(10, 5);
+	int cy = c.GetHeight();
+	EXPECT_EQ(5, cy);
+	int cz = c.GetWidth();
+	EXPECT_EQ(10, cz);
+}
+
 TEST(TestIntegration, Image)
 {
 	Image i = Image(10, 5, 2);
+	Canal c = i[0];
+	int cy = c.GetHeight();
+	EXPECT_EQ(5, cy);
+	int cz = c.GetWidth();
+	EXPECT_EQ(10, cz);
 	int x = i.GetNumBands();
 	EXPECT_EQ(2, x);
 	int y = i.GetHeight();
@@ -25,6 +39,11 @@ TEST(TestIntegration, fichierIm)
 {
 	Image i = Image(10, 5, 2);
 	fichierIm imFile = fichierIm(i, "bidon");
+	Canal c = imFile.image[0];
+	int cy = c.GetHeight();
+	EXPECT_EQ(5, cy);
+	int cz = c.GetWidth();
+	EXPECT_EQ(10, cz);
 	int x = imFile.image().GetNumBands();
 	EXPECT_EQ(2, x);
 	int y = imFile.image().GetHeight();
@@ -39,17 +58,17 @@ TEST(TestIntegration, fichierIm)
 TEST(TestFonctionnalite, ModifierUneImage)
 {
 	Image img = Image(10, 5, 1);
-	for (size_t i = 0; i < 10 ; i++)
+	for (int i = 0; i < 10 ; i++)
 	{
-		for (size_t j = 0; j < 5; j++)
+		for (int j = 0; j < 5; j++)
 		{
 			img[0](i, j) = i*j;
 		}
 	}
 	
-	for (size_t i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		for (size_t j = 0; j < 5; j++)
+		for (int j = 0; j < 5; j++)
 		{
 			EXPECT_EQ(i*j, img[0](i, j));
 		}
